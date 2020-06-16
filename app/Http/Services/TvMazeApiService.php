@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace App\Http\Services;
 
-
 use App\Exceptions\ExceptionBadRequest;
 use GuzzleHttp\Client;
 
@@ -31,8 +30,8 @@ class TvMazeApiService
     private function getHeaders(): array
     {
         return [
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json'
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
         ];
     }
 
@@ -42,7 +41,7 @@ class TvMazeApiService
      * @throws ExceptionBadRequest
      * @return array
      */
-    public function getShowsByTitle(string $title): array
+    public function getShowByTitle(string $title): array
     {
         $apiResponse = $this->requestShowsByTitleFromTvMazeApi($title);
 
@@ -59,10 +58,10 @@ class TvMazeApiService
     {
         $singleSearchResponse = null;
         try {
-            $singleSearchResponse = $this->client->get($this->apiUrl . '/singlesearch/shows?q=' . $title,
-                ['headers' => $this->getHeaders()]
+            $singleSearchResponse = $this->client->get($this->apiUrl.'/singlesearch/shows?q='.$title,
+                    ['headers' => $this->getHeaders()]
             );
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             throw new ExceptionBadRequest($exception->getMessage());
         }
 
@@ -78,10 +77,10 @@ class TvMazeApiService
     private function filterTvMazeApiResponse(array $apiResponse, string $title): array
     {
         $response = [];
-        if(strcasecmp($title, $apiResponse['name']) === 0) {
+        if (strcasecmp($title, $apiResponse['name']) === 0) {
             $response = $apiResponse;
         }
 
-        return  $response;
+        return $response;
     }
 }

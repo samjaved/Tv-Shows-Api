@@ -39,11 +39,11 @@ class TvMazeApiController extends Controller
     public function getTvShowByTitle(MovieTitleRequest $movieTitleRequest)
     {
         $movieTitleRequest->validated();
-        $apiResonse = $this->tvMazeApiService->getShowsByTitle($movieTitleRequest->query('title'));
+        $apiResonse = $this->tvMazeApiService->getShowByTitle($movieTitleRequest->query('title'));
 
         return response()->json(
-            [$this->objectWrapper => $apiResonse],
-            200
+                [$this->objectWrapper => $apiResonse],
+                200
         );
     }
 }
