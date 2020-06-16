@@ -31,5 +31,6 @@ class MovieTitleRequest extends AbstractRequest
      */
     protected function failedValidation(Validator $validator)
     {
+        throw new ExceptionBadRequest($validator->errors()->first());
     }
 }
