@@ -16,9 +16,9 @@ class MovieTitleRequest extends AbstractRequest
      */
     public function rules()
     {
-      return [
-          'title' => 'required|string'
-      ];
+        return [
+                'title' => 'required|string',
+        ];
 
     }
 
@@ -26,8 +26,9 @@ class MovieTitleRequest extends AbstractRequest
      * Handle a failed validation attempt.
      *
      * @param Validator $validator
-     * @return void
+     *
      * @throws \Exception
+     * @return void
      */
     protected function failedValidation(Validator $validator)
     {

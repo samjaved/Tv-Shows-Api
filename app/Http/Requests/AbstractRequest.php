@@ -20,7 +20,7 @@ abstract class AbstractRequest extends FormRequest
     public function all($keys = null)
     {
         $data = parent::all();
-        
+
         foreach ($this->queryParametersToValidate as $validationDataKey => $queryParameter) {
             $data[$validationDataKey] = $this->query($queryParameter);
         }
